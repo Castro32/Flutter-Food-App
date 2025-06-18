@@ -1,0 +1,36 @@
+name: flutter_application_4
+description: A new Flutter project.
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  provider: ^6.1.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    -  lib/images/burgers/
+    # - lib/images/burgers/burger2.png
+    # - lib/images/burgers/burger3.png
+    - lib/images/salads/
+    # - lib/images/salads/salad1.png
+    # - lib/images/salads/salad2.png
+    - lib/images/drinks/
+    # - lib/images/drinks/drink1.png
+    # - lib/images/drinks/drink2.png
+    - lib/images/desserts/
+    # - lib/images/desserts/dessert1.png
+    # - lib/images/desserts/dessert2.png
+
