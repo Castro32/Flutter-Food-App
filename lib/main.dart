@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_4/Themes/theme_provider.dart';
+import 'package:flutter_application_4/models/restaurant.dart';
 import './Pages/login.dart';
 import 'package:provider/provider.dart';
 import './Pages/register.dart';
@@ -10,10 +11,19 @@ import './Pages/settings.dart';
 
 void main() {
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => ThemeProvider(),
-      child: const MyApp(),
-    ),
+    MultiProvider(providers: [
+      //theme provider
+      ChangeNotifierProvider<ThemeProvider>(
+        create: (context) => ThemeProvider(),
+      ),
+      //restaurant provider
+
+      ChangeNotifierProvider<Restaurant>(
+        create: (context) => Restaurant(),
+      )
+    ],
+    child: const MyApp(),
+    )
   );
 }
 

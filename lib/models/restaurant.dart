@@ -1,5 +1,7 @@
+import 'package:flutter/material.dart';
+
 import 'food.dart';
-class Restaurant {
+class Restaurant extends ChangeNotifier{
   final List<Food> _menu = [
     //burger 
     Food(
@@ -44,7 +46,7 @@ class Restaurant {
       description: "Crisp romaine lettuce tossed with grilled chicken breast, crunchy croutons, shaved parmesan cheese, and creamy Caesar dressing.", 
       imagePath: 'lib/images/salads/salad.png', 
       price: 320, 
-      category: FoodCategory.burgers, 
+      category: FoodCategory.salads, 
       availableAddons: [
         Addon(name: "Extra Cheese", price: 320),
         Addon(name: "Bacon", price: 350),
@@ -56,7 +58,7 @@ class Restaurant {
       description: "A refreshing mix of cherry tomatoes, cucumbers, red onions, Kalamata olives, and feta cheese on a bed of mixed greens, drizzled with tangy lemon-oregano vinaigrette.", 
       imagePath: 'lib/images/salads/salad1.png', 
       price: 320, 
-      category: FoodCategory.burgers, 
+      category: FoodCategory.salads, 
       availableAddons: [
         Addon(name: "Extra Cheese", price: 320),
         Addon(name: "Bacon", price: 350),
@@ -68,7 +70,7 @@ class Restaurant {
       description: "Tri-color quinoa blended with baby spinach, mango chunks, avocado, black beans, and roasted sweet corn, finished with a honey-lime dressing.", 
       imagePath: 'lib/images/salads/salad2.png', 
       price: 320, 
-      category: FoodCategory.burgers, 
+      category: FoodCategory.salads, 
       availableAddons: [
         Addon(name: "Extra Cheese", price: 320),
         Addon(name: "Bacon", price: 350),
@@ -81,7 +83,7 @@ class Restaurant {
       description: "A sweet and tangy blend to energize your day.A mix of strawberries, blueberries, and raspberries blended with low-fat yogurt and a splash of honey for a creamy, antioxidant-rich treat.", 
       imagePath: 'lib/images/drinks/drink.png', 
       price: 320, 
-      category: FoodCategory.burgers, 
+      category: FoodCategory.drinks, 
       availableAddons: [
         Addon(name: "Extra Cold", price: 320),
         Addon(name: "Tangy", price: 350),
@@ -93,7 +95,7 @@ class Restaurant {
       description: "Pineapple and orange juice swirled with a splash of grenadine and topped with fresh mint and a cherry — perfect for sipping under the sun", 
       imagePath: 'lib/images/drinks/drink1.png', 
       price: 320, 
-      category: FoodCategory.burgers, 
+      category: FoodCategory.drinks, 
       availableAddons: [
         Addon(name: "Vibrant", price: 320),
         Addon(name: "Non-Alcoholic", price: 350),
@@ -105,7 +107,7 @@ class Restaurant {
       description: "Freshly squeezed lemons shaken with crushed ice, a dash of sugar, and muddled mint leaves — the ultimate thirst-quencher.", 
       imagePath: 'lib/images/drinks/drink2.png', 
       price: 320, 
-      category: FoodCategory.burgers, 
+      category: FoodCategory.drinks, 
       availableAddons: [
         Addon(name: "Cool", price: 320),
         Addon(name: "Crisp", price: 350),
@@ -119,7 +121,7 @@ class Restaurant {
       description: "Golden-brown grilled halloumi paired with ripe avocado, cherry tomatoes, arugula, and cucumber, drizzled with a zesty lemon-herb dressing.", 
       imagePath: 'lib/images/desserts/dessert.png', 
       price: 320, 
-      category: FoodCategory.burgers, 
+      category: FoodCategory.desserts, 
       availableAddons: [
         Addon(name: "Extra Cheese", price: 320),
         Addon(name: "Bacon", price: 350),
@@ -131,7 +133,7 @@ class Restaurant {
       description: "Shredded grilled chicken, shredded carrots, red cabbage, chopped peanuts, and cilantro on a bed of romaine, tossed in a spicy peanut-lime dressing.", 
       imagePath: 'lib/images/desserts/dessert1.png', 
       price: 320, 
-      category: FoodCategory.burgers, 
+      category: FoodCategory.desserts, 
       availableAddons: [
         Addon(name: "Extra Cheese", price: 320),
         Addon(name: "Bacon", price: 350),
@@ -143,7 +145,7 @@ class Restaurant {
       description: "Roasted beets, crumbled goat cheese, arugula, and candied walnuts, finished with a balsamic glaze for a rich, earthy flavor.", 
       imagePath: 'lib/images/desserts/dessert2.png', 
       price: 320, 
-      category: FoodCategory.burgers, 
+      category: FoodCategory.desserts, 
       availableAddons: [
         Addon(name: "Extra Cheese", price: 320),
         Addon(name: "Bacon", price: 350),
