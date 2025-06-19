@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_4/Pages/food_page.dart';
 import 'package:flutter_application_4/components/description.dart';
 import 'package:flutter_application_4/components/drawer.dart';
 import 'package:flutter_application_4/components/food_tile.dart';
@@ -50,7 +51,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
         padding: EdgeInsets.zero,
         itemBuilder: (context, index) {
           final food = categoryMenu[index];
-          return  FoodTile(food: food, onTap: () {});
+          return  FoodTile(food: food, onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) =>FoodPage(food:food) )));
         },
       );
     }).toList();
