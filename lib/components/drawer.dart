@@ -8,7 +8,7 @@ class CustomDrawer extends StatelessWidget {
   Widget build (BuildContext context) {
     return Drawer(
       child: Container(
-        color: Theme.of(context).colorScheme.background,
+        color: Theme.of(context).colorScheme.surface,
         child: Column(
           children: [
             //logo

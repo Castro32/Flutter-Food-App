@@ -5,8 +5,14 @@ import 'package:flutter_application_4/components/my_button.dart';
 
 class FoodPage extends StatefulWidget {
   final Food food;
+  final Map<Addon, bool> selectedAddons = {};
 
-  const FoodPage({super.key, required this.food});
+  FoodPage({super.key, required this.food}){
+
+    for (Addon addon in food.availableAddons){
+      selectedAddons[addon]= false;
+    }
+  }
 
   @override
   State<FoodPage> createState() => _FoodPageState();
@@ -15,7 +21,9 @@ class FoodPage extends StatefulWidget {
 class _FoodPageState extends State<FoodPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Stack( children: [
+      //scaffold
+      Scaffold(
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -32,7 +40,7 @@ class _FoodPageState extends State<FoodPage> {
               Text(widget.food.name, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
         
               //food price
-              Text('Ksh ' + widget.food.price.toString(), style: TextStyle( fontSize: 16, color: Theme.of(context).colorScheme.inversePrimary),),
+              Text('Ksh ${widget.food.price}', style: TextStyle( fontSize: 16, color: Theme.of(context).colorScheme.inversePrimary),),
         
               const SizedBox(height: 10,),
               
@@ -62,9 +70,13 @@ class _FoodPageState extends State<FoodPage> {
                     Addon addon = widget.food.availableAddons[index];
                   return CheckboxListTile(
                     title: Text(addon.name),
-                    subtitle: Text('Ksh ' + addon.price.toString(), style: TextStyle(color: Theme.of(context).colorScheme.inversePrimary),),
-                    value: false, 
-                    onChanged: (value){}
+                    subtitle: Text('Ksh ${addon.price}', style: TextStyle(color: Theme.of(context).colorScheme.inversePrimary),),
+                    value: widget.selectedAddons[addon],
+                    onChanged: (bool? value){
+                      setState(() {
+                        widget.selectedAddons[addon] = value!;
+                      });
+                    }
                   );
                 }),
               )
@@ -83,6 +95,32 @@ class _FoodPageState extends State<FoodPage> {
           ],
         ),
       ),
+    ),
+    //back button
+    // Container(decoration: BoxDecoration(color: Theme.of(context).colorScheme.secondary),
+    // child: IconButton(
+    //   icon: Icon(Icons.arrow_back_ios_rounded),
+    //   onPressed: () {
+    //     Navigator.of(context).pop();
+    //   },
+    // ),
+    // )
+    SafeArea(
+      child: Opacity (
+        opacity: 0.5,
+        child: Container(
+          margin: EdgeInsets.only(left: 10),
+          decoration: BoxDecoration(color: Theme.of(context).colorScheme.secondary, shape: BoxShape.circle,),
+        child: IconButton(
+        icon: Icon(Icons.arrow_back_ios_rounded),
+        onPressed: () {
+          Navigator.of(context).pop();
+        },
+            ),
+            ),
+      )
+    )
+    ],
     );
   }
 }

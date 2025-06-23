@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
       // },
       home: const LogReg(),
       routes: {
-        '/login': (context) => LoginPage(),
+        '/login': (context) => const LoginPage(),
         '/register': (context) => const RegisterPage(),
         '/settings': (context) => const Settings(),
       },

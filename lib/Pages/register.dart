@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_4/components/my_button.dart';
-import 'package:flutter_application_4/main.dart';
 import 'package:flutter_application_4/components/my_textfield.dart';
 
-// class MyTextField extends StatelessWidget {
 //   final String hintText;
 //   final IconData icon;
 //   final bool obscureText;
