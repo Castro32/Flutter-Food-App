@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_4/components/my_button.dart';
 import 'package:flutter_application_4/models/food.dart';
 import 'package:flutter_application_4/components/my_button.dart';
+import 'package:flutter_application_4/models/restaurant.dart';
+import 'package:provider/provider.dart';
 
 class FoodPage extends StatefulWidget {
   final Food food;
@@ -19,6 +21,22 @@ class FoodPage extends StatefulWidget {
 }
 
 class _FoodPageState extends State<FoodPage> {
+
+  //method to add to cart
+  void addToCart(Food food, Map<Addon, bool> selectedAddons){
+
+    //close food page
+    Navigator.pop(context);
+
+    List<Addon> currentlySelectedAddons = [];
+    for (Addon addon in widget.food.availableAddons) {
+      if (widget.selectedAddons[addon] == true){
+        currentlySelectedAddons.add(addon);
+      }
+    }
+
+    context.read<Restaurant>().addToCart(food, currentlySelectedAddons);
+  }
   @override
   Widget build(BuildContext context) {
     return Stack( children: [
@@ -86,7 +104,7 @@ class _FoodPageState extends State<FoodPage> {
         
             //add to cart button
            MyButton(
-            onTap: (){}, 
+            onTap: ()=> addToCart(widget.food, widget.selectedAddons), 
             text: "Add to Cart",
             ),
 
@@ -109,10 +127,10 @@ class _FoodPageState extends State<FoodPage> {
       child: Opacity (
         opacity: 0.5,
         child: Container(
-          margin: EdgeInsets.only(left: 10),
+          margin: const EdgeInsets.only(left: 10),
           decoration: BoxDecoration(color: Theme.of(context).colorScheme.secondary, shape: BoxShape.circle,),
         child: IconButton(
-        icon: Icon(Icons.arrow_back_ios_rounded),
+        icon: const Icon(Icons.arrow_back_ios_rounded),
         onPressed: () {
           Navigator.of(context).pop();
         },

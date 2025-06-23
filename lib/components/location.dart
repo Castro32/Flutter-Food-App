@@ -6,7 +6,7 @@ class CurrentLocation extends StatelessWidget{
   void openLocationSearchBox(BuildContext context){
     showDialog(context: context, builder: (context) => AlertDialog(
       title: const Text("Your Location"),
-      content: const TextField(decoration: const InputDecoration(hintText:"Search Address"),
+      content: const TextField(decoration: InputDecoration(hintText:"Search Address"),
       ),
       actions: [
         //cancel btn
@@ -39,7 +39,7 @@ class CurrentLocation extends StatelessWidget{
                 //address
                 Text("6901,   Kahawa Wendani", style: TextStyle(color: Theme.of(context).colorScheme.inversePrimary, fontWeight: FontWeight.bold)),
                 //menu
-                Icon(Icons.keyboard_arrow_down_rounded)
+                const Icon(Icons.keyboard_arrow_down_rounded)
               ],
             ),
           )

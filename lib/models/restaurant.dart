@@ -1,4 +1,6 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_4/models/cart_items.dart';
 
 import 'food.dart';
 class Restaurant extends ChangeNotifier{
@@ -157,9 +159,78 @@ class Restaurant extends ChangeNotifier{
   //getter1
   List<Food> get menu=>_menu;
 
-  //operations
-  //add cart
+  // operations
+
+    //user cart
+    final List<CartItems> _cart = [];
+    //ad to cart
+    void addToCart(Food food, List<Addon> selectedAddons){
+      //check cart item already with food+quantity
+      CartItems? cartItem = _cart.firstWhereOrNull((item)  {
+        //check if items are ==
+        bool isSameFood = item.food == food;
+
+        //check if list of items are ==
+        bool isSameAddons = ListEquality().equals(item.selectedAddons, selectedAddons);
+
+        return isSameFood && isSameAddons;
+      });
+
+      //item exists increase no.
+      if (cartItem != null) {
+        cartItem.quantity++;
+      }
+
+      //else add another
+      else {
+        _cart.add(CartItems(food: food, selectedAddons: selectedAddons));
+      }
+      notifyListeners();
+    }
   //remove cart
+  void removeFromCart(CartItems cartItem){
+    int cartIndex = _cart.indexOf(cartItem);
+
+    if (cartIndex != -1) {
+      if (_cart[cartIndex].quantity > 1){
+        _cart[cartIndex].quantity--;
+      } else {
+        _cart.remove(cartIndex);
+      }
+    }
+  }
+
+  //total price
+  double getTotalPrice() {
+    double total = 0.0;
+
+    for (CartItems cartItem in _cart) {
+      double itemTotal = cartItem.food.price;
+
+      for (Addon addon in cartItem.selectedAddons){
+        itemTotal += addon.price;
+      }
+
+      total += itemTotal * cartItem.quantity;
+    }
+    return total;
+  }
+
+  //total items in cart
+  int getTotalItemCount(){
+    int totalItemCount = 0;
+
+    for (CartItems cartItem in _cart){
+      totalItemCount += cartItem.quantity;
+    }
+    return totalItemCount;
+  }
+
+  //clear
+  void clearCart() {
+    _cart.clear();
+    notifyListeners();
+  }
 
 
 }

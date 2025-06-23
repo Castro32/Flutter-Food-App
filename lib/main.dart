@@ -5,8 +5,6 @@ import './Pages/login.dart';
 import 'package:provider/provider.dart';
 import './Pages/register.dart';
 import './auth/log_reg.dart';
-import 'package:flutter_application_4/Pages/login.dart';
-import 'package:flutter_application_4/Pages/register.dart';
 import './Pages/settings.dart';
 
 void main() {
