@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_4/Pages/cart_page.dart';
 
 class Navbar extends StatelessWidget {
   final Widget child;
@@ -21,7 +22,7 @@ class Navbar extends StatelessWidget {
         IconButton(
           icon: const Icon(Icons.shopping_cart),
           onPressed: () {
-          
+            Navigator.push(context, MaterialPageRoute(builder: (context) =>const CartPage() ));
           },
         ),
       ],

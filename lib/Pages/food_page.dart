@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_4/components/my_button.dart';
 import 'package:flutter_application_4/models/food.dart';
-import 'package:flutter_application_4/components/my_button.dart';
 import 'package:flutter_application_4/models/restaurant.dart';
 import 'package:provider/provider.dart';
 
