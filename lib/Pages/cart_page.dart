@@ -317,10 +317,12 @@
 // }
 
 import 'package:flutter/material.dart';
+import 'package:flutter_application_4/Pages/checkout_page.dart';
 import 'package:flutter_application_4/components/cart_tile.dart';
 import 'package:flutter_application_4/models/cart_items.dart';
 import 'package:flutter_application_4/models/restaurant.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_application_4/components/my_button.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({super.key});
@@ -335,24 +337,56 @@ class CartPage extends StatelessWidget {
         //scaffold
         return Scaffold(
           appBar: AppBar(
-            title: Text('Cart'),
+            title: const Text('Cart'),
             backgroundColor: Colors.transparent,
             foregroundColor: Theme.of(context).colorScheme.inversePrimary,
+            actions: [
+              //clear cart
+              IconButton(onPressed: (){
+                showDialog(context: context, builder: (context) => AlertDialog(
+                  title:const Text("Are you sure you want to clear the cart?"),
+                  actions: [
+                    //cancel button
+                    TextButton(onPressed: ()=> Navigator.pop(context), child:const Text("Cancel")),
+
+                    //yes button
+                    TextButton(onPressed: (){
+                      Navigator.pop(context);
+                      restaurant.clearCart();
+                    }, child:const Text("Yes")),
+                  ],
+                ));
+              }, icon: Icon(Icons.delete))
+            ],
           ),
           body: Column(
             children: [
-              Expanded(child: ListView.builder(
-                itemCount: userCart.length,
-                itemBuilder: (context, index) {
+              Expanded(
+                child: Column(
+                  children: [
+                    userCart.isEmpty? const Expanded(child: Center(child: const Text("Cart is empty"))): Expanded(child: ListView.builder(
+                      itemCount: userCart.length,
+                      itemBuilder: (context, index) {
+                
+                        //get cart items
+                        final cartItem = userCart[index];
+                        //return cart tile ui
+                        return CartTile(cartItem: cartItem);
+                      }
+                    ),
+                    ),
+                  ],
+                ),
+              ),
+              
+            //checkout button
+            MyButton(onTap: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>const CheckoutPage()));
+            }, text: "Checkout",),
 
-                  //get cart items
-                  final cartItem = userCart[index];
-                  //return cart tile ui
-                  return CartTile(cartItem: cartItem);
-                }
-              ),
-              ),
+            const SizedBox(height: 55)
             ],
+
           ),
         );
       }
