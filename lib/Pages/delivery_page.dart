@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_4/components/my_button.dart';
 import 'package:flutter_application_4/components/receipt_component.dart';
 
 class DeliveryPage extends StatelessWidget {
@@ -9,11 +8,11 @@ class DeliveryPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Delivery Progress"),
+        title: const Text("Delivery Progress"),
         backgroundColor:  Colors.transparent,
       ),
       bottomNavigationBar: _buildBottomNavbar(context),
-      body: Column(
+      body: const Column(
         children: [
           ReceiptComponent(),
         ],
@@ -39,7 +38,7 @@ class DeliveryPage extends StatelessWidget {
           ),
           child: IconButton(
             onPressed: (){},
-            icon: Icon(Icons.person),
+            icon: const Icon(Icons.person),
           ),
           ),
 
@@ -70,7 +69,7 @@ class DeliveryPage extends StatelessWidget {
           ),
           child: IconButton(
             onPressed: (){},
-            icon: Icon(Icons.message),
+            icon: const Icon(Icons.message),
           ),
           ),
 
@@ -83,7 +82,7 @@ class DeliveryPage extends StatelessWidget {
           ),
           child: IconButton(
             onPressed: (){},
-            icon: Icon(Icons.call),
+            icon: const Icon(Icons.call),
             color: Colors.green,
           ),
           ),

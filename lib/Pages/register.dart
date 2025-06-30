@@ -108,7 +108,7 @@ class _RegisterPageState extends State<RegisterPage> {
               //email Input
               MyTextField(
                 icon: Icons.email,
-                controller: nameController, // Use a different controller for email
+                controller: nameController, 
                 hintText: "Email",
                 obscureText: false,
               ),
@@ -117,7 +117,7 @@ class _RegisterPageState extends State<RegisterPage> {
               //password Input
               MyTextField(
                 icon: Icons.lock,
-                controller: nameController, // Use a different controller for password
+                controller: nameController, 
                 hintText: "Password",
                 obscureText: true,
               ),

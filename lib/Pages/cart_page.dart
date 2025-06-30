@@ -319,7 +319,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_4/Pages/checkout_page.dart';
 import 'package:flutter_application_4/components/cart_tile.dart';
-import 'package:flutter_application_4/models/cart_items.dart';
 import 'package:flutter_application_4/models/restaurant.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_application_4/components/my_button.dart';
@@ -356,7 +355,7 @@ class CartPage extends StatelessWidget {
                     }, child:const Text("Yes")),
                   ],
                 ));
-              }, icon: Icon(Icons.delete))
+              }, icon: const Icon(Icons.delete))
             ],
           ),
           body: Column(
@@ -364,7 +363,7 @@ class CartPage extends StatelessWidget {
               Expanded(
                 child: Column(
                   children: [
-                    userCart.isEmpty? const Expanded(child: Center(child: const Text("Cart is empty"))): Expanded(child: ListView.builder(
+                    userCart.isEmpty? const Expanded(child: Center(child:  Text("Cart is empty"))): Expanded(child: ListView.builder(
                       itemCount: userCart.length,
                       itemBuilder: (context, index) {
                 

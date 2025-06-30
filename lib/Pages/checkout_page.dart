@@ -39,7 +39,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
           //cancel
           TextButton(
             onPressed: ()=>Navigator.pop(context),
-            child: Text("Cancel"),
+            child: const Text("Cancel"),
           ),
           //confirm
           TextButton(
@@ -48,11 +48,11 @@ class _CheckoutPageState extends State<CheckoutPage> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => DeliveryPage(),
+                  builder: (context) => const DeliveryPage(),
                 ),
               );
             },
-            child: Text("Yes"),
+            child: const Text("Yes"),
           )
         ],
       ));

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_4/models/food.dart';
-import 'package:flutter_application_4/models/restaurant.dart';
 
 class CartQuantity extends StatelessWidget {
 

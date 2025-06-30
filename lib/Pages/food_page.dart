@@ -57,7 +57,7 @@ class _FoodPageState extends State<FoodPage> {
               Text(widget.food.name, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
         
               //food price
-              Text('Ksh ${widget.food.price}', style: TextStyle( fontSize: 16, color: Theme.of(context).colorScheme.inversePrimary),),
+              Text('Ksh ${widget.food.price}', style: TextStyle( fontSize: 16, color: Theme.of(context).colorScheme.secondary),),
         
               const SizedBox(height: 10,),
               

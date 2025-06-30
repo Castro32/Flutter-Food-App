@@ -238,7 +238,7 @@ class _loginPage extends State<LoginPage>  {
     print('Email: $email');
     print('Password: $password');
     
-    // For now, just show a success message
+    //  success message
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
         content: Text('Login successful!'),

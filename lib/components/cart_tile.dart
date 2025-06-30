@@ -75,7 +75,7 @@ class CartTile extends StatelessWidget {
                       //addon name
                       Text(addon.name),
                 
-                      Padding(padding: EdgeInsets.only(left: 3.0)),
+                      const Padding(padding: EdgeInsets.only(left: 3.0)),
                       //addon price
                       Text('(Ksh ${addon.price.toStringAsFixed(2)})',
                       style: TextStyle(
