@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "68423795465",
+    "project_id": "cas-delivery",
+    "storage_bucket": "cas-delivery.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:68423795465:android:cfa286a849290561c149d8",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application_4"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNNEAyPCsXjtv3_EWebre_i0HLF0z8nx4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

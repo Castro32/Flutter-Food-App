@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_4/components/draweTile.dart';
+import 'package:flutter_application_4/services/auth/auth_service.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
+
+  void logout(){
+    final authService = AuthService();
+    authService.signOut();
+    // Optionally, you can navigate to the login page after logout
+    // Navigator.pushNamed(context, '/login');
+  }
 
   @override
   Widget build (BuildContext context) {

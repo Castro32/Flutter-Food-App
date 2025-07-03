@@ -1,13 +1,18 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_4/Themes/theme_provider.dart';
+import 'package:flutter_application_4/firebase_options.dart';
 import 'package:flutter_application_4/models/restaurant.dart';
+import 'package:flutter_application_4/services/auth/auth_gate.dart';
 import './Pages/login.dart';
 import 'package:provider/provider.dart';
 import './Pages/register.dart';
-import './auth/log_reg.dart';
+// import 'services/auth/log_reg.dart';
 import './Pages/settings.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(
     MultiProvider(providers: [
       //theme provider
@@ -38,7 +43,8 @@ class MyApp extends StatelessWidget {
       // routes: {
        
       // },
-      home: const LogReg(),
+      // home: const LogReg(),
+      home: const AuthGate(),
       routes: {
         '/login': (context) => const LoginPage(),
         '/register': (context) => const RegisterPage(),
