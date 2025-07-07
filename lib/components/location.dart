@@ -1,26 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_4/models/restaurant.dart';
+import 'package:provider/provider.dart';
 
 class CurrentLocation extends StatelessWidget{
   const CurrentLocation({super.key});
 
   void openLocationSearchBox(BuildContext context){
-    showDialog(context: context, builder: (context) => AlertDialog(
-      title: const Text("Your Location"),
-      content: const TextField(decoration: InputDecoration(hintText:"Search Address"),
-      ),
-      actions: [
-        //cancel btn
-        MaterialButton(
-          onPressed: () => Navigator.pop(context),
-          child: const Text("Cancel"),
+    final TextEditingController textController = TextEditingController();
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text("Your Location"),
+        content: TextField(
+          controller: textController,
+          decoration: const InputDecoration(hintText: "Enter your address..."),
         ),
-        //save btn
-        MaterialButton(
-          onPressed: () => Navigator.pop(context),
-          child: const Text("Save"),
-        )
-      ],
-    ));
+        actions: [
+          //cancel btn
+          MaterialButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text("Cancel"),
+          ),
+          //save btn
+          MaterialButton(
+            onPressed: () {
+              String newAddress = textController.text;
+              context.read<Restaurant>().updateDeliveryAddress(newAddress);
+              Navigator.pop(context);
+            },
+            child: const Text("Save"),
+          )
+        ],
+      ),
+    );
   }
 
   @override
@@ -37,7 +49,16 @@ class CurrentLocation extends StatelessWidget{
             child: Row(
               children: [
                 //address
-                Text("6901,   Kahawa Wendani", style: TextStyle(color: Theme.of(context).colorScheme.inversePrimary, fontWeight: FontWeight.bold)),
+                Consumer<Restaurant>(
+                  builder: (context, restaurant, child) {
+                    return Text(
+                      restaurant.deliveryAddress.isEmpty
+                          ? "Enter your address"
+                          : restaurant.deliveryAddress,
+                      style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    );
+                  },
+                ),
                 //menu
                 const Icon(Icons.keyboard_arrow_down_rounded)
               ],
