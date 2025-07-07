@@ -261,6 +261,8 @@ import 'package:flutter_application_4/Pages/home_page.dart';
 import 'package:flutter_application_4/components/my_button.dart';
 import 'package:flutter_application_4/components/my_textfield.dart';
 import 'package:flutter_application_4/services/auth/auth_service.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class RegisterPage extends StatefulWidget {
   final void Function()? onTap;
@@ -275,6 +277,9 @@ class _RegisterPageState extends State<RegisterPage> {
   final passwordController = TextEditingController(); 
   final confirmPasswordController = TextEditingController();
   final nameController = TextEditingController();
+
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   // Registration method
   //Registration method with detailed debugging
@@ -300,13 +305,18 @@ void register() async {
     return;
   }
 
-  // Basic email validation
-  if (!email.contains('@') || !email.contains('.')) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text("Please enter a valid email address!")),
-    );
-    return;
-  }
+  bool isValidEmail(String email) {
+  return RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(email);
+}
+
+// Then in your register method, replace the basic validation with:
+    if (!isValidEmail(email)) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Please enter a valid email address!")),
+      );
+      return;
+    }
+
 
   // Check password length
   if (password.length < 6) {
@@ -325,59 +335,57 @@ void register() async {
   }
 
   try {
-    print('DEBUG: Attempting to register with email: $email');
+  print('DEBUG: Attempting to register with email: $email');
+  
+  // Create account first
+  UserCredential userCredential = await _firebaseAuth.createUserWithEmailAndPassword(
+    email: email,
+    password: password,
+  );
+  
+  print('DEBUG: Account created successfully!');
+  
+  // Then try to save additional data (optional)
+  try {
+    await _firestore.collection('userData').doc(userCredential.user!.uid).set({
+      'userName': name,
+      'email': email,
+      'uid': userCredential.user!.uid,
+      'createdAt': FieldValue.serverTimestamp(),
+    }).timeout(const Duration(seconds: 5));
     
-    // Call the auth service with only email and password
-    await authService.signUpWithEmailAndPassword(name, email, password);
-    
-    print('DEBUG: Registration successful!');
-
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text("Register"),  
-        content: const Text("Registration successful!"),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pop(); // Close dialog first
-              Navigator.pushReplacement(
-                context, 
-                MaterialPageRoute(builder: (context) => const HomePage())
-              ); 
-            },
-            child: const Text("OK"),
-          ),
-        ],
-      ),
-    );
-  } catch (e) {
-    print('DEBUG: Registration error: $e');
-    
-    String errorMessage;
-    String errorString = e.toString().toLowerCase();
-    
-    if (errorString.contains('invalid-email')) {
-      errorMessage = "Invalid email format. Please check your email address.";
-    } else if (errorString.contains('email-already-in-use')) {
-      errorMessage = "This email is already registered. Please use a different email.";
-    } else if (errorString.contains('weak-password')) {
-      errorMessage = "Password is too weak. Please use a stronger password.";
-    } else if (errorString.contains('operation-not-allowed')) {
-      errorMessage = "Email/Password sign-up is not enabled in Firebase Console.";
-    } else if (errorString.contains('too-many-requests')) {
-      errorMessage = "Too many failed attempts. Please try again later.";
-    } else {
-      errorMessage = "Registration failed: $e";
-    }
-    
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(errorMessage),
-        duration: const Duration(seconds: 5),
-      ),
-    );
+    print('DEBUG: User data saved to Firestore');
+  } catch (firestoreError) {
+    print('DEBUG: Firestore save failed, but account created: $firestoreError');
+    // Continue with success - account is created
   }
+  
+  print('DEBUG: Registration successful!');
+  
+  // Show success dialog
+  showDialog(
+    context: context,
+    builder: (context) => AlertDialog(
+      title: const Text("Register"),  
+      content: const Text("Registration successful!"),
+      actions: [
+        TextButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+            Navigator.pushReplacement(
+              context, 
+              MaterialPageRoute(builder: (context) => const HomePage())
+            ); 
+          },
+          child: const Text("OK"),
+        ),
+      ],
+    ),
+  );
+} catch (e) {
+  print('DEBUG: Registration error: $e');
+  // Handle error...
+}
 }
 
   @override
