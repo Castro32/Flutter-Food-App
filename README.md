@@ -1,16 +1,17 @@
-# flutter_application_4
+**🍔 Food Delivery App – Flutter & Firebase**
+A fully functional, pre-built food delivery app built using Flutter and Firebase – ready to deploy out of the box.
 
-A new Flutter project.
+🚀 Features
+**Email Authentication (Firebase Auth)
+Real-Time Backend Integration with Firebase
+User Account Creation
+Menu Browsing with dynamic UI
+Cart Management – Add and remove items
+Secure Card Payment Input
+Order Placement with real-time updates**
 
-## Getting Started
+Firebase Firestore Integration – Orders saved and tracked live
 
-This project is a starting point for a Flutter application.
+**Receipt Generation** – Order summary available after checkout
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+This app is ideal for learning, customizing for a client project, or launching your own food delivery startup.
