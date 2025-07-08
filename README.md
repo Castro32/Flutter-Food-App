@@ -1,17 +1,26 @@
-**🍔 Food Delivery App – Flutter & Firebase**
-A fully functional, pre-built food delivery app built using Flutter and Firebase – ready to deploy out of the box.
+**🍕 Food Delivery App**
+A complete food delivery application built with Flutter and Firebase, designed for immediate deployment and customization.
 
-🚀 Features
-**Email Authentication (Firebase Auth)
-Real-Time Backend Integration with Firebase
-User Account Creation
-Menu Browsing with dynamic UI
-Cart Management – Add and remove items
-Secure Card Payment Input
-Order Placement with real-time updates**
+**🚀 Features**
+- **User Authentication:** Secure email-based registration and login system
+**Menu Browsing:** Interactive menu with food categories and detailed item views
+**Shopping Cart:** Add, remove, and modify items with real-time cart updates
+**Payment Integration:** Secure card payment processing
+**Order Management:** Real-time order tracking and status updates
+**Receipt Generation:** Automated receipt creation with order summaries
+**Firebase Backend:** Complete backend infrastructure with real-time database
 
-Firebase Firestore Integration – Orders saved and tracked live
+**🛠️ Tech Stack**
+**Frontend: **Flutter
+****Backend:** Firebase
+Database:** Firebase Firestore
+**Authentication:** Firebase Auth
+**Real-time Updates:** Firebase Realtime Database
+**
+📱 App Flow**
+**Registration/Login:** Users create accounts or sign in with email
+**Browse Menu:** Explore available food items and categories
+**Add to Cart:** Select items and customize orders
+**Payment: **Secure card payment processing
+**Receipt:** Digital receipt generation
 
-**Receipt Generation** – Order summary available after checkout
-
-This app is ideal for learning, customizing for a client project, or launching your own food delivery startup.
