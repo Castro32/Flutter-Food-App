@@ -6,12 +6,14 @@ import 'package:flutter_application_4/models/restaurant.dart';
 import 'package:flutter_application_4/services/auth/auth_gate.dart';
 import './Pages/login.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import './Pages/register.dart';
 // import 'services/auth/log_reg.dart';
 import './Pages/settings.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load(fileName: ".env");
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(
     MultiProvider(providers: [
