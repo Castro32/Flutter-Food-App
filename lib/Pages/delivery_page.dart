@@ -23,9 +23,9 @@ class _DeliveryPageState extends State<DeliveryPage> {
     db.saveOrder(receipt).then((value) {
       //show snackbar
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
+        const SnackBar(
           content: Text("Order saved successfully!"),
-          duration: const Duration(seconds: 2),
+          duration: Duration(seconds: 2),
         ),
       );
     }).catchError((error) {

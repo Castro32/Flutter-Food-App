@@ -6,8 +6,6 @@ class LogReg extends StatefulWidget{
   
   const LogReg({super.key});
   
-  
-
   @override
   State<LogReg> createState() => _LogRegState();
 }
